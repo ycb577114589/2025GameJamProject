@@ -142,7 +142,7 @@ public class MainGame : MonoBehaviour
 
     void StartUpdate()
     {
-        int lastTime = 1;
+        int lastTime = 5;
         if(Time.time - statusStartTime > lastTime)
         {
             gameState = GameState.Playing;

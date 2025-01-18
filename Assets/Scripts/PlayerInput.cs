@@ -47,9 +47,7 @@ public class PlayerInput : MonoBehaviour
             return Vector3.zero;
         }
         Quaternion rotation = inputRotation;
-        
         Vector3 forwardDirection = rotation * Vector3.right;
-        
         first = forwardDirection;
 
         sec = beforeRotationQuat * Vector3.right;
@@ -74,10 +72,9 @@ public class PlayerInput : MonoBehaviour
                 convertDirection.y = -convertDirection.y;
             convertForce = convertDirection * forceMagnitudeHorizontal;
         }
-        Debug.Log("force: " + convertForce);
+        //  Debug.Log("force: " + convertForce);
         // 使用刚体施加力
         rb.AddForce(convertForce, ForceMode.Impulse);
-        beforeRotationQuat = inputRotation;
         return convertDirection;
     }
 }

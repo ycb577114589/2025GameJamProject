@@ -68,7 +68,6 @@ public class Player
     void PlayerUpdate()
     {
         gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
-        //var direct = playerInput.CalForceToBall(gameObject.transform.rotation, playerType, id);
         Vector3 pos;
  
         if(playerType == PlayerType.Player1)
@@ -90,9 +89,13 @@ public class Player
         {
             if(playerType == PlayerType.Player1)
             {
-                float F = 1;
+                float degree = Quaternion.Angle(lastQuen, quant);
+                if(degree > 8)
+                {
+                    lastQuen = quant;
+                    MainGame.instance.health += (int)(degree / 4.0f);
+                }
             }
-            MainGame.instance.health += (int)1;
             return;
         }
         if(MainGame.instance.GetStatus() != GameState.Playing)
@@ -103,11 +106,25 @@ public class Player
         {
             return;
         }
-        float angle = Quaternion.Angle(playerInput.beforeRotationQuat, quant);
-        if(angle > MainGame.instance.yuzhi)
+        int legalNum = 0;
+        Vector3 diff = gameObject.transform.rotation.eulerAngles - playerInput.beforeRotationQuat.eulerAngles;
+        if(InputIsLegal(diff.x))
+        {
+            legalNum++;
+        }
+        if(InputIsLegal(diff.y))
+        {
+            legalNum++;
+        }
+        if(InputIsLegal(diff.z))
+        {
+            legalNum++;
+        }
+        if(legalNum >= 1)
         {
             playerInput.AddForceToBall(gameObject.transform.rotation, playerType, id);
         }
+        playerInput.beforeRotationQuat = gameObject.transform.rotation;
     }
 
     void OtherUpdate()
@@ -115,7 +132,6 @@ public class Player
         float angle = Quaternion.Angle(lastQuen, quant);
         if(angle > 60)
         {
-            Debug.Log("relativeEuler: " + angle);
             lastQuen = quant;
             gameObject.GetComponent<FireProjectileContorller>().FireProjectile();
         }
