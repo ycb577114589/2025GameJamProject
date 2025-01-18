@@ -17,6 +17,13 @@ public class NetData
     public int type;
 }
 
+[System.Serializable]
+public class CharacterType
+{
+    public int id;
+    public int type;
+}
+
 public class NetMgr : MonoBehaviour
 {
     public List<GameObject> playerPrefab;
@@ -65,17 +72,31 @@ public class NetMgr : MonoBehaviour
                 {
                     playerType = PlayerType.Player1;
                     Player1Id = i;
+                    SendCharacterType(i, 1);
                 }
                 else if(Player2Id == -1)
                 {
                     playerType = PlayerType.Player2;
                     Player2Id = i;
+                    SendCharacterType(i, 2);
+                }else{
+                    SendCharacterType(i, 3);
                 }
                 Vector3 spawnPos = followObj.transform.position;
                 dictPlayer[i].CreateObject(playerPrefab[0], spawnPos, playerType, followObj);
             }
             dictPlayer[i].Update();
         }
+    }
+
+    void SendCharacterType(int id, int type)
+    {
+        CharacterType characterType = new CharacterType();
+        characterType.id = id;
+        characterType.type = type;
+        string json = JsonUtility.ToJson(characterType);
+        // Debug.Log("Send: " + json);
+        GetComponent<WebSocketClientExample>().ws.Send(json);
     }
 
     public void AddMessage(string message)
