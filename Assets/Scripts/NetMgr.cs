@@ -20,6 +20,8 @@ public class NetMgr : MonoBehaviour
 {
     public List<GameObject> playerPrefab;
     private Dictionary<int, Player> dictPlayer = new Dictionary<int, Player>();
+    private int Player1Id = -1;
+    private int Player2Id = -1;
 
     void Update()
     {
@@ -28,7 +30,16 @@ public class NetMgr : MonoBehaviour
         {
             if(!dictPlayer[i].gameObject)
             {
-                dictPlayer[i].CreateObject(playerPrefab[0], new Vector3(0, 0, 200 * dictPlayer[i].id));
+                PlayerType playerType = PlayerType.Other;
+                if(Player1Id == -1)
+                {
+                    playerType = PlayerType.Player1;
+                }
+                else if(Player2Id == -1)
+                {
+                    playerType = PlayerType.Player2;
+                }
+                dictPlayer[i].CreateObject(playerPrefab[0], new Vector3(0, 0, 200 * dictPlayer[i].id), playerType);
             }
             dictPlayer[i].Update();
         }
