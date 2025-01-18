@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Globalization;
+using System;
 
 public enum GameState
 {
@@ -21,6 +22,7 @@ public class MainGame : MonoBehaviour
     public string NextScene;
     [Tooltip("是否调试模式")]
     public bool isDebug = false;
+    public List<Transform> audiencePos;
 
     private GameState gameState = GameState.Start;
     private float statusStartTime = 0;

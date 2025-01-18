@@ -29,40 +29,43 @@ public class Player
     public float constDeltaTime = 0.2f;
 
     public float curDeltaTime = 0f;
-    // public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
-    // {
-    //     playerType = type;
-    //     gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
-    //     gameObject.name = "Player" + id;
 
-    //     gameObject.transform.localScale = new Vector3(1, 1, 1);
-    //     this.parent = parent;
-    //     playerInput = gameObject.GetComponent<PlayerInput>();
-    // }
-    public void CreateObject(GameObject prefab,GameObject prefab2, Vector3 pos, PlayerType type, GameObject parent)
+    private Quaternion lastQuen = Quaternion.identity;
+
+    public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
     {
-        if(type != PlayerType.Other)
+        gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
+        if(type == PlayerType.Other)
         {
-            gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
-        } 
-        else
-        {
-            gameObject = GameObject.Instantiate(prefab2, pos,Quaternion.identity);
             gameObject.GetComponent<FireProjectileContorller>().target = MainGame.instance.gameObject.transform;
         }
         gameObject.name = "Player" + id;
-
+        playerType = type;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
+        gameObject.transform.position = pos;
         this.parent = parent;
         playerInput = gameObject.GetComponent<PlayerInput>();
-        // gameObject.transform.parent = playerInput.contains;
+        lastQuen = quant;
     }
     private bool InputIsLegal(float inputValue)
     {
-        return Mathf.Abs(inputValue) > 1f;
+        var diff = Mathf.Abs(inputValue);
+        while(diff > 180)
+            diff = 360 - diff;
+        return Mathf.Abs(diff) > 1f;
     }
 
     public void Update()
+    {
+        if(playerType == PlayerType.Other)
+        {
+            OtherUpdate();
+            return;
+        }
+        PlayerUpdate();
+    }
+
+    void PlayerUpdate()
     {
         gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
         //var direct = playerInput.CalForceToBall(gameObject.transform.rotation, playerType, id);
@@ -99,9 +102,21 @@ public class Player
         {
             return;
         }
-        if(InputIsLegal(inputRotation.x - playerInput.beforeRotationVec.x)||InputIsLegal(inputRotation.y - playerInput.beforeRotationVec.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotationVec.z))
+        float angle = Quaternion.Angle(quant, playerInput.beforeRotationQuat);
+        if(angle > 5)
         {
-            playerInput.AddForceToBall(gameObject.transform.rotation, inputRotation, playerType, id);
+            playerInput.AddForceToBall(gameObject.transform.rotation, playerType, id);
+        }
+    }
+
+    void OtherUpdate()
+    {
+        float angle = Quaternion.Angle(lastQuen, quant);
+        if(angle > 60)
+        {
+            Debug.Log("relativeEuler: " + angle);
+            lastQuen = quant;
+            gameObject.GetComponent<FireProjectileContorller>().FireProjectile();
         }
     }
 

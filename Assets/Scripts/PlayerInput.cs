@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
     public Vector3 first = Vector3.zero;
     public Vector3 sec = Vector3.zero;
     
-    public GameObject player ;
+    public GameObject player;
     private Rigidbody rb;
     
     public Transform testObj;
@@ -15,7 +15,6 @@ public class PlayerInput : MonoBehaviour
     public float forceMagnitudeHorizontal = 10f;
     public GameObject testobj ;
     public Quaternion beforeRotationQuat ;
-    public Vector3 beforeRotationVec ;
 
 
     void Start()
@@ -41,7 +40,7 @@ public class PlayerInput : MonoBehaviour
         return convertDirection;
     }
 
-    public Vector3 AddForceToBall(Quaternion inputRotation, Vector3 intputRotationVec, PlayerType playerType, int id)
+    public Vector3 AddForceToBall(Quaternion inputRotation, PlayerType playerType, int id)
     {
         if(rb == null)
         {
@@ -57,6 +56,10 @@ public class PlayerInput : MonoBehaviour
 
         var direction = first + sec;
         direction.Normalize();
+        if(direction.magnitude > 2)
+        {
+            return Vector3.zero;
+        }
         var convertDirection = Vector3.zero;
         var convertForce = Vector3.zero;
         if(playerType == PlayerType.Player1)
@@ -70,10 +73,10 @@ public class PlayerInput : MonoBehaviour
             float diff = Vector3.Dot(direction, Vector3.up);
             convertDirection = new Vector3(0, diff, 0);
             if(direction.y < 0)
-                convertDirection.y = 0;
+                convertDirection.y = -convertDirection.y;
             convertForce = convertDirection * forceMagnitudeHorizontal;
         }
-        Debug.LogError("施加力的方向" + convertDirection);
+        Debug.Log("force: " + convertForce);
         // 使用刚体施加力
         rb.AddForce(convertForce, ForceMode.Impulse);
         // 测试当前方向的力
@@ -83,7 +86,6 @@ public class PlayerInput : MonoBehaviour
         // testobj.transform.position = this.transform.position + direction *100;
 
         beforeRotationQuat = inputRotation;
-        beforeRotationVec = intputRotationVec;
         return convertDirection;
     }
 }

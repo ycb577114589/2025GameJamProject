@@ -17,20 +17,14 @@ public class FireProjectileContorller : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
         }
-
-        // 检查是否按下了发射按键
-        if (Input.GetKeyDown(fireKey))
-        {
-            FireProjectile();
-        }
     }
 
-    void FireProjectile()
+    public void FireProjectile()
     {
         // 实例化投掷物预制体
         GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        if (rb!= null)
+        if (rb != null)
         {
             // 给投掷物添加一个向前的力
             rb.linearVelocity = transform.forward * projectileSpeed;

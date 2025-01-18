@@ -15,7 +15,6 @@ public class WebSocketClientExample : MonoBehaviour
             // 注册消息接收事件
             ws.OnMessage += (sender, e) =>
             {
-                Debug.Log("Message received from server: " + e.Data);
                 netMgr.AddMessage(e.Data);
             };
 

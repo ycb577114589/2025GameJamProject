@@ -33,6 +33,7 @@ public class NetMgr : MonoBehaviour
 
     private static GameObject DontDesObj = null;
     private GameObject followObj = null;
+    private int audienceIdx;
     void Awake()
     {
         if(!DontDesObj)
@@ -68,23 +69,32 @@ public class NetMgr : MonoBehaviour
                     continue;
                 }
                 PlayerType playerType = PlayerType.Other;
+                GameObject prefab = null;
+                Vector3 spawnPos = Vector3.zero;
                 if(Player1Id == -1)
                 {
                     playerType = PlayerType.Player1;
                     Player1Id = i;
                     SendCharacterType(i, 1);
+                    prefab = playerPrefab[0];
+                    spawnPos = followObj.transform.position;
                 }
                 else if(Player2Id == -1)
                 {
                     playerType = PlayerType.Player2;
                     Player2Id = i;
                     SendCharacterType(i, 2);
+                    prefab = playerPrefab[0];
+                    spawnPos = followObj.transform.position;
                 }
-                else{
+                else if(audienceIdx < MainGame.instance.audiencePos.Count){
                     SendCharacterType(i, 3);
+                    prefab = playerPrefab[1];
+                    spawnPos = MainGame.instance.audiencePos[audienceIdx++].position;
+                }else{
+                    continue;
                 }
-                Vector3 spawnPos = followObj.transform.position;
-                dictPlayer[i].CreateObject(playerPrefab[0],playerPrefab[1], spawnPos, playerType, followObj);
+                dictPlayer[i].CreateObject(prefab, spawnPos, playerType, followObj);
             }
             dictPlayer[i].Update();
         }
