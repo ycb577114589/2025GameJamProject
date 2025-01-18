@@ -27,15 +27,33 @@ public class Player
     public float constDeltaTime = 0.2f;
 
     public float curDeltaTime = 0f;
-    public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
+    // public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
+    // {
+    //     playerType = type;
+    //     gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
+    //     gameObject.name = "Player" + id;
+
+    //     gameObject.transform.localScale = new Vector3(1, 1, 1);
+    //     this.parent = parent;
+    //     playerInput = gameObject.GetComponent<PlayerInput>();
+    // }
+    public void CreateObject(GameObject prefab,GameObject prefab2, Vector3 pos, PlayerType type, GameObject parent)
     {
-        playerType = type;
-        gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
+        if(type != PlayerType.Other)
+        {
+            gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
+        } 
+        else
+        {
+            gameObject = GameObject.Instantiate(prefab2, pos,Quaternion.identity);
+            gameObject.GetComponent<FireProjectileContorller>().target = MainGame.instance.gameObject.transform;
+        }
         gameObject.name = "Player" + id;
 
         gameObject.transform.localScale = new Vector3(1, 1, 1);
         this.parent = parent;
         playerInput = gameObject.GetComponent<PlayerInput>();
+        // gameObject.transform.parent = playerInput.contains;
     }
     private bool InputIsLegal(float inputValue)
     {
