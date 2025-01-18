@@ -60,18 +60,19 @@ public class MainGame : MonoBehaviour
     {
         return gameState;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void OnCollisionEnter(Collision other) 
     {
-        Vector3 diffToEnd = transform.position - endPos.position;
-        if(diffToEnd.sqrMagnitude < 10)
+        if(other.transform.tag=="Finish")    
         {
             if(NextScene.Length != 0)
                 SceneManager.LoadScene(NextScene);
             else
                 Debug.Log("游戏结束");
         }
+    } 
+    // Update is called once per frame
+    void Update()
+    {   
         if(isDebug)
         {
             return;
@@ -139,7 +140,7 @@ public class MainGame : MonoBehaviour
 
     void StartUpdate()
     {
-        int lastTime = 5;
+        int lastTime = 1;
         if(Time.time - statusStartTime > lastTime)
         {
             gameState = GameState.Playing;

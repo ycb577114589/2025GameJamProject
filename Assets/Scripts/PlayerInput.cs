@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Ball_Main");
         // 获取物体的 Rigidbody 组件
         rb = player.GetComponent<Rigidbody>(); 
     }
