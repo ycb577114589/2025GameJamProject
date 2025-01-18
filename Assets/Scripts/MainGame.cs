@@ -17,7 +17,6 @@ public class MainGame : MonoBehaviour
     [Tooltip("下一个场景")]
     public string NextScene;
 
-    public float TestSpeed = 0.02f;
     private GameState gameState = GameState.Start;
     private NetMgr netMgr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,10 +31,6 @@ public class MainGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = endPos.position - transform.position;
-        direction.Normalize();
-        transform.position += direction * TestSpeed;
-
         Vector3 diffToEnd = transform.position - endPos.position;
         if(diffToEnd.sqrMagnitude < 10)
         {
