@@ -36,10 +36,15 @@ public class Player
     }
     public void Update()
     {
-        gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
+        if(playerInput==null)
+        {
+            return;
+        }
         if(InputIsLegal(inputRotation.x-playerInput.beforeRotation.x)||InputIsLegal(inputRotation.y-playerInput.beforeRotation.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotation.z))
         { 
-            gameObject.transform.rotation = quant;
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
+            Debug.Log("test rottation " +  gameObject.transform.rotation+"  id = " +id);
+            playerInput.AddForceToBall(gameObject.transform.rotation,id);
         }
     }
     
