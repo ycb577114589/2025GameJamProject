@@ -79,11 +79,12 @@ public class NetMgr : MonoBehaviour
                     playerType = PlayerType.Player2;
                     Player2Id = i;
                     SendCharacterType(i, 2);
-                }else{
+                }
+                else{
                     SendCharacterType(i, 3);
                 }
                 Vector3 spawnPos = followObj.transform.position;
-                dictPlayer[i].CreateObject(playerPrefab[0], spawnPos, playerType, followObj);
+                dictPlayer[i].CreateObject(playerPrefab[0],playerPrefab[1], spawnPos, playerType, followObj);
             }
             dictPlayer[i].Update();
         }
