@@ -23,8 +23,26 @@ public class PlayerInput : MonoBehaviour
         // 获取物体的 Rigidbody 组件
         rb = player.GetComponent<Rigidbody>(); 
     }
-    public Vector3 AddForceToBall(Quaternion inputRotation,Vector3 intputRotationVec,PlayerType playerType,int id)
-    {  
+
+    public Vector3 CalForceToBall(Quaternion inputRotation, PlayerType playerType, int id)
+    {
+        var direction = inputRotation * Vector3.right;
+        var convertDirection = Vector3.zero;
+        if(playerType == PlayerType.Player1)
+        {
+            convertDirection = new Vector3(direction.x, 0, direction.z);
+        }
+        else if(playerType== PlayerType.Player2)
+        {
+            convertDirection = new Vector3(0,direction.y,0);
+            if(direction.y < 0)
+                convertDirection.y = 0;
+        }
+        return convertDirection;
+    }
+
+    public Vector3 AddForceToBall(Quaternion inputRotation, Vector3 intputRotationVec, PlayerType playerType, int id)
+    {
         if(rb == null)
         {
             return Vector3.zero;
@@ -42,13 +60,15 @@ public class PlayerInput : MonoBehaviour
         var convertForce = Vector3.zero;
         if(playerType == PlayerType.Player1)
         {
-            convertDirection = new Vector3(direction.x,0,direction.z);
-            convertForce = convertDirection * forceMagnitudeVerticle; 
+            convertDirection = new Vector3(direction.x, 0, direction.z);
+            convertForce = convertDirection * forceMagnitudeVerticle;
         }
         else if(playerType== PlayerType.Player2)
         {
             convertDirection = new Vector3(0,direction.y,0);
-            convertForce = convertDirection * forceMagnitudeHorizontal; 
+            if(direction.y < 0)
+                convertDirection.y = 0;
+            convertForce = convertDirection * forceMagnitudeHorizontal;
         }
         Debug.LogError("施加力的方向" + convertDirection);
         // 使用刚体施加力
@@ -58,11 +78,12 @@ public class PlayerInput : MonoBehaviour
         // rb.AddForce( test * forceMagnitude, ForceMode.Impulse);
         // Debug.LogError("当前拍的志向"+test+"  id = " +id);
         // testobj.transform.position = this.transform.position + direction *100;
-        
+
         beforeRotationQuat = inputRotation;
         beforeRotationVec = intputRotationVec;
         return convertDirection;
     }
+
     void Update()
     {
     }

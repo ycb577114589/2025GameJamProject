@@ -3,7 +3,7 @@ using WebSocketSharp;
 
 public class WebSocketClientExample : MonoBehaviour
 {
-    private WebSocket ws;
+    public WebSocket ws;
     public NetMgr netMgr;
     void Start()
     {

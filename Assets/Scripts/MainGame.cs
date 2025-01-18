@@ -19,6 +19,8 @@ public class MainGame : MonoBehaviour
     private Vector3 startScale;
     [Tooltip("下一个场景")]
     public string NextScene;
+    [Tooltip("是否调试模式")]
+    public bool isDebug = false;
 
     private GameState gameState = GameState.Start;
     private float statusStartTime = 0;
@@ -34,8 +36,13 @@ public class MainGame : MonoBehaviour
     }
     void Start()
     {
-        gameState = GameState.Start;
-        GetComponent<Rigidbody>().useGravity = false;
+        if(isDebug)
+        {
+            gameState = GameState.Playing;
+        }else{
+            gameState = GameState.Start;
+            GetComponent<Rigidbody>().useGravity = false;
+        }
         statusStartTime = Time.time;
 
         startPos = transform.position;
@@ -62,6 +69,10 @@ public class MainGame : MonoBehaviour
                 SceneManager.LoadScene(NextScene);
             else
                 Debug.Log("游戏结束");
+        }
+        if(isDebug)
+        {
+            return;
         }
         switch (gameState)
         {
@@ -91,7 +102,7 @@ public class MainGame : MonoBehaviour
 
     void PlayerUpdate()
     {
-        float radius = 0.52f;
+        float radius = 0.5f;
         float topY = transform.position.y + radius * transform.localScale.magnitude;
         float bottomY = 0 + radius * transform.localScale.magnitude;
         Debug.Log("topY = " + topY + " bottomY = " + bottomY);
