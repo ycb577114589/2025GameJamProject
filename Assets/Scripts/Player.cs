@@ -36,7 +36,7 @@ public class Player
     }
     private bool InputIsLegal(float inputValue)
     {
-        return Mathf.Abs(inputValue) > 0.01f;
+        return Mathf.Abs(inputValue) > 1f;
     }
     public void Update()
     {
@@ -56,21 +56,15 @@ public class Player
         //gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
         if(playerType == PlayerType.Player1)
         {
-            Vector3 initialPosition = quant * Vector3.forward * 5;
-            // Vector3 direction = -gameObject.transform.forward;
-            // direction.y = 0;
-            // Vector3 pos = direction.normalized * 5;
-            // gameObject.transform.position = parent.transform.position + pos;
-            // gameObject.transform.rotation = Quaternion.LookRotation(direction);
-            // float radians = rotation * Mathf.Deg2Rad;
-            // // 计算 x 和 z 坐标，y 坐标为 0，半径为 1
-            // float x = Mathf.Cos(radians);
-            // float z = Mathf.Sin(radians);
-            // // 将计算得到的位置应用到对象的位置
-            // gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
-            // gameObject.transform.rotation
-            gameObject.transform.position = parent.transform.position + initialPosition;
-        }else if(playerType == PlayerType.Player2)
+            float rotation = gameObject.transform.eulerAngles.y;
+            float radians = rotation * Mathf.Deg2Rad;
+            // 计算 x 和 z 坐标，y 坐标为 0，半径为 1
+            float x = Mathf.Cos(radians);
+            float z = Mathf.Sin(radians);
+            // 将计算得到的位置应用到对象的位置
+            gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
+        }
+        else if(playerType == PlayerType.Player2)
         {
             gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
         }
@@ -79,9 +73,10 @@ public class Player
         {
             return;
         }
-        if(InputIsLegal(inputRotation.x-playerInput.beforeRotation.x)||InputIsLegal(inputRotation.y-playerInput.beforeRotation.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotation.z))
+        if(InputIsLegal(inputRotation.x-playerInput.beforeRotationVec.x)||InputIsLegal(inputRotation.y-playerInput.beforeRotationVec.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotationVec.z))
         {
-            playerInput.AddForceToBall(gameObject.transform.rotation,id);
+            Debug.LogError("player test inputRotation "+inputRotation+ " beforeRotation" + playerInput.beforeRotationVec);
+            playerInput.AddForceToBall(gameObject.transform.rotation, inputRotation,playerType, id);
         }
     }
     

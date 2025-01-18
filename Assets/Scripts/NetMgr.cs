@@ -80,7 +80,7 @@ public class NetMgr : MonoBehaviour
 
     public void AddMessage(string message)
     {
-        Debug.Log("Receive: " + message);
+        // Debug.Log("Receive: " + message);
         NetData data = JsonUtility.FromJson<NetData>(message);
         if(!dictPlayer.ContainsKey(data.id))
         {
