@@ -44,7 +44,7 @@ public class NetMgr : MonoBehaviour
             dictPlayer[i].Update();
         }
     }
-
+    
     public void AddMessage(string message)
     {
         Debug.Log("Receive: " + message);
