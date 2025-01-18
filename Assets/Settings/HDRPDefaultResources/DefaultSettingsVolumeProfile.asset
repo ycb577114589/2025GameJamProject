@@ -419,7 +419,7 @@ MonoBehaviour:
   active: 1
   screenFadeDistance:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 1
 --- !u!114 &-1810185824034143124
 MonoBehaviour:
   m_ObjectHideFlags: 3

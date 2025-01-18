@@ -225,7 +225,7 @@ MonoBehaviour:
     m_Value: 8289.296
   aerosolAnisotropy:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 1
   ozoneDensityDimmer:
     m_OverrideState: 1
     m_Value: 1
@@ -393,7 +393,7 @@ MonoBehaviour:
   active: 1
   skyType:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 4
   cloudType:
     m_OverrideState: 1
     m_Value: 0

@@ -28,9 +28,9 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
+  - RayTracingPrepass
   - TransparentDepthPostpass
   - TransparentBackface
-  - RayTracingPrepass
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -188,8 +188,8 @@ Material:
     - _HeightTessCenter: 0.5
     - _InvTilingScale: 1
     - _Ior: 1
-    - _IridescenceMask: 1
-    - _IridescenceThickness: 1
+    - _IridescenceMask: 0
+    - _IridescenceThickness: 0
     - _LinkDetailsWithBase: 1
     - _MaterialID: 3
     - _MaterialTypeMask: 2
@@ -213,7 +213,7 @@ Material:
     - _RefractionModel: 2
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
-    - _Smoothness: 0.761
+    - _Smoothness: 1
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SpecularAAScreenSpaceVariance: 0.1
@@ -235,7 +235,7 @@ Material:
     - _SurfaceType: 1
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
-    - _Thickness: 5.01
+    - _Thickness: 0
     - _Thinckness: 1.5
     - _TransmissionEnable: 1
     - _TransmissionMask: 1
@@ -267,7 +267,7 @@ Material:
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _TransmittanceColor: {r: 1, g: 0.6546302, b: 0, a: 1}
+    - _TransmittanceColor: {r: 0, g: 0, b: 0, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
