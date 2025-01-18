@@ -75,6 +75,10 @@ public class MainGame : MonoBehaviour
         else if(other.transform.tag =="Damage")
         {
             Kill();
+        }else if(other.transform.tag == "Bullet")
+        {
+            Bullet bullet = other.gameObject.GetComponentInChildren<Bullet>(); 
+            bullet.ColliderWithBall(this);
         }
     } 
     // Update is called once per frame
@@ -119,10 +123,10 @@ public class MainGame : MonoBehaviour
 
     void PlayerUpdate()
     {
+        transform.transform.localScale = Vector3.Lerp(transform.transform.localScale, Vector3.one * (1 + (health - 100.0f) / 100), Time.deltaTime);
         float radius = 0.5f;
         float topY = transform.position.y + radius * transform.localScale.magnitude;
         float bottomY = 0 + radius * transform.localScale.magnitude;
-        Debug.Log("topY = " + topY + " bottomY = " + bottomY);
         if(transform.position.y < bottomY)
         {
             Kill();

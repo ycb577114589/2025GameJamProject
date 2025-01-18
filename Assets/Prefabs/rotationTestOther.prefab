@@ -63,8 +63,6 @@ MonoBehaviour:
   forceMagnitudeHorizontal: 10
   testobj: {fileID: 0}
   beforeRotationQuat: {x: 0, y: 0, z: 0, w: 0}
-  beforeRotationVec: {x: 0, y: 0, z: 0}
-  contains: {fileID: 0}
 --- !u!114 &6890181974940570051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  projectilePrefab: {fileID: 1591403349026466254, guid: 6d7c68b95471241268ce1fa95c6f41bf, type: 3}
+  projectilePrefab: {fileID: 2844580827361171870, guid: 3c2b77c7d233d454aa46d2a8095ba0c5, type: 3}
   projectileSpeed: 10
   fireKey: 32
 --- !u!1 &5328108406367515427

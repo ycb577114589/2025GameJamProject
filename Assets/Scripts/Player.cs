@@ -127,13 +127,22 @@ public class Player
         playerInput.beforeRotationQuat = gameObject.transform.rotation;
     }
 
+    private float lastBullet = 0;
+
     void OtherUpdate()
     {
+        if(Time.time - lastBullet < 0.4f)
+        {
+            return;
+        }
+        lastBullet = Time.time;
         float angle = Quaternion.Angle(lastQuen, quant);
         if(angle > 60)
         {
             lastQuen = quant;
-            gameObject.GetComponent<FireProjectileContorller>().FireProjectile();
+            gameObject.GetComponent<FireProjectileContorller>().FireProjectile(angle / 90.0f);
+        }else{
+            lastQuen = Quaternion.Lerp(lastQuen, quant, 0.01f * Time.deltaTime);
         }
     }
 

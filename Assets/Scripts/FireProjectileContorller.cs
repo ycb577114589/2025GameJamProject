@@ -20,26 +20,33 @@ public class FireProjectileContorller : MonoBehaviour
         }
     }
 
-    public void FireProjectile()
+    public void FireProjectile(float speed)
     {
         // 实例化投掷物预制体
         GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
         if(projectile)
         {
-            StartCoroutine(DestroyAfterSeconds(projectile, 8.0f));
+            StartCoroutine(DestroyAfterSeconds(projectile, 3.5f));
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 // 给投掷物添加一个向前的力
-                rb.linearVelocity = transform.forward * projectileSpeed;
+                rb.linearVelocity = transform.forward * projectileSpeed * speed;
             }
         }
     }
 
     IEnumerator DestroyAfterSeconds(GameObject obj, float delay)
     {
-        // 等待指定的时间
-        yield return new WaitForSeconds(delay);
+        float startTime = Time.time;
+
+        float randScaleSpeed = Random.Range(0.1f, 0.3f);
+        float randScaleSize = Random.Range(0.15f, 0.3f);
+        while(Time.time - startTime < delay)
+        {
+            yield return new WaitForFixedUpdate();
+            obj.transform.localScale = Vector3.Lerp(obj.transform.localScale, Vector3.one * randScaleSize, randScaleSpeed * Time.deltaTime);
+        }
         // 销毁当前游戏对象
         Destroy(obj);
     }
