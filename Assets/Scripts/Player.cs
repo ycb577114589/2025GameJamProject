@@ -36,7 +36,7 @@ public class Player
     }
     private bool InputIsLegal(float inputValue)
     {
-        return Mathf.Abs(inputValue) > 0.01f;
+        return Mathf.Abs(inputValue) > 1f;
     }
     public void Update()
     {
@@ -50,18 +50,20 @@ public class Player
             float z = Mathf.Sin(radians);
             // 将计算得到的位置应用到对象的位置
             gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
-        }else if(playerType == PlayerType.Player2)
+        }
+        else if(playerType == PlayerType.Player2)
         {
             gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
         }
-        
+
         if(playerInput==null)
         {
             return;
         }
-        if(InputIsLegal(inputRotation.x-playerInput.beforeRotation.x)||InputIsLegal(inputRotation.y-playerInput.beforeRotation.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotation.z))
+        if(InputIsLegal(inputRotation.x-playerInput.beforeRotationVec.x)||InputIsLegal(inputRotation.y-playerInput.beforeRotationVec.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotationVec.z))
         {
-            playerInput.AddForceToBall(gameObject.transform.rotation,id);
+            Debug.LogError("player test inputRotation "+inputRotation+ " beforeRotation" + playerInput.beforeRotationVec);
+            playerInput.AddForceToBall(gameObject.transform.rotation, inputRotation,playerType, id);
         }
     }
     
