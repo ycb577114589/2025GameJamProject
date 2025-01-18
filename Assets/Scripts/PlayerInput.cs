@@ -21,7 +21,10 @@ public class PlayerInput : MonoBehaviour
     }
     public void AddForceToBall(Quaternion inputRotation,int id)
     {  
-        
+        if(rb==null)
+        {
+            return;
+        }
         Quaternion rotation = inputRotation;
         
         Vector3 forwardDirection = rotation * Vector3.right;

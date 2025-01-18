@@ -27,6 +27,8 @@ public class Player
     {
         playerType = type;
         gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
+        gameObject.transform.parent = gameObject.transform;
+        gameObject.transform.position = Vector3.zero;
         playerInput = gameObject.GetComponent<PlayerInput>();
     }
     private bool InputIsLegal(float inputValue)
