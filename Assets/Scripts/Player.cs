@@ -40,16 +40,36 @@ public class Player
     }
     public void Update()
     {
-        gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
+        if(MainGame.instance.GetStatus() == GameState.Start)
+        {
+            if(playerType == PlayerType.Player2)
+            {
+                float F = 1;
+            }
+            MainGame.instance.health += (int)1;
+            return;
+        }
+        if(MainGame.instance.GetStatus() != GameState.Playing)
+        {
+            return;
+        }
+        //gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
         if(playerType == PlayerType.Player1)
         {
-            float rotation = gameObject.transform.eulerAngles.y;
-            float radians = rotation * Mathf.Deg2Rad;
-            // 计算 x 和 z 坐标，y 坐标为 0，半径为 1
-            float x = Mathf.Cos(radians);
-            float z = Mathf.Sin(radians);
-            // 将计算得到的位置应用到对象的位置
-            gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
+            Vector3 initialPosition = quant * Vector3.forward * 5;
+            // Vector3 direction = -gameObject.transform.forward;
+            // direction.y = 0;
+            // Vector3 pos = direction.normalized * 5;
+            // gameObject.transform.position = parent.transform.position + pos;
+            // gameObject.transform.rotation = Quaternion.LookRotation(direction);
+            // float radians = rotation * Mathf.Deg2Rad;
+            // // 计算 x 和 z 坐标，y 坐标为 0，半径为 1
+            // float x = Mathf.Cos(radians);
+            // float z = Mathf.Sin(radians);
+            // // 将计算得到的位置应用到对象的位置
+            // gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
+            // gameObject.transform.rotation
+            gameObject.transform.position = parent.transform.position + initialPosition;
         }else if(playerType == PlayerType.Player2)
         {
             gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
