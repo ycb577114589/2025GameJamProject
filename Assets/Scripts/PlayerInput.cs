@@ -56,16 +56,19 @@ public class PlayerInput : MonoBehaviour
         sec = beforeRotationQuat * Vector3.right;
 
         var direction = first + sec;
+        direction.Normalize();
         var convertDirection = Vector3.zero;
         var convertForce = Vector3.zero;
         if(playerType == PlayerType.Player1)
         {
             convertDirection = new Vector3(direction.x, 0, direction.z);
-            convertForce = convertDirection * forceMagnitudeVerticle;
+            float diff = Vector3.Dot(direction, convertDirection);
+            convertForce = convertDirection * forceMagnitudeVerticle * diff;
         }
         else if(playerType== PlayerType.Player2)
         {
-            convertDirection = new Vector3(0,direction.y,0);
+            float diff = Vector3.Dot(direction, Vector3.up);
+            convertDirection = new Vector3(0, diff, 0);
             if(direction.y < 0)
                 convertDirection.y = 0;
             convertForce = convertDirection * forceMagnitudeHorizontal;
@@ -82,9 +85,5 @@ public class PlayerInput : MonoBehaviour
         beforeRotationQuat = inputRotation;
         beforeRotationVec = intputRotationVec;
         return convertDirection;
-    }
-
-    void Update()
-    {
     }
 }

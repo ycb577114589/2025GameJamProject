@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum PlayerType
@@ -45,12 +47,26 @@ public class Player
     public void Update()
     {
         gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
-        var direct = playerInput.CalForceToBall(gameObject.transform.rotation, playerType, id);
-        gameObject.transform.position = parent.transform.position - direct.normalized * 3;
+        //var direct = playerInput.CalForceToBall(gameObject.transform.rotation, playerType, id);
+        Vector3 pos;
+        if(playerType == PlayerType.Player1)
+        {
+            Vector3 dir = gameObject.transform.right;
+            dir.y = 0;
+            pos = parent.transform.position - dir.normalized * 2;
+        }else if(playerType == PlayerType.Player2)
+        {
+            pos = parent.transform.position - new Vector3(0, 2, 0);
+        }
+        else
+        {
+            pos = gameObject.transform.position;
+        }
+        gameObject.transform.position = pos;
 
         if(MainGame.instance.GetStatus() == GameState.Start)
         {
-            if(playerType == PlayerType.Player2)
+            if(playerType == PlayerType.Player1)
             {
                 float F = 1;
             }
