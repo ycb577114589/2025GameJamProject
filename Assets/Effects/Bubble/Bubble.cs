@@ -13,15 +13,15 @@ public class Bubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Boom();
-        }
+        // if (Input.GetKeyDown(KeyCode.S))
+        // {
+        //     Boom();
+        // }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Reset();
-        }
+        // if (Input.GetKeyDown(KeyCode.D))
+        // {
+        //     Reset();
+        // }
     }
     void Reset()
     {
