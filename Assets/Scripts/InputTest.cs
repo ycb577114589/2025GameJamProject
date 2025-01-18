@@ -11,18 +11,18 @@ public class InputTest : MonoBehaviour
     // 要应用的力的大小
     public float forceMagnitude = 10f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Vector3 beforeRotation = Vector3.zero;
     void Start()
     {
         // 获取物体的 Rigidbody 组件
         rb = player.GetComponent<Rigidbody>();
         
     }
-    public void CheckForward()
+    public void AddForceToBall(Vector3 inputRotation)
     {
         // 获取当前物体的旋转
         Quaternion rotation = transform.rotation;
-
+        
         // 获取物体的前方向向量
         Vector3 forwardDirection = rotation * Vector3.forward;
         Debug.LogError("正方向为"+forwardDirection);
@@ -38,12 +38,5 @@ public class InputTest : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("H 键被按下");
-            CheckForward();
-        }
-        
     }
-
 }
