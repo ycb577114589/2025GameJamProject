@@ -66,7 +66,7 @@ public class PlayerInput : MonoBehaviour
         if(playerType == PlayerType.Player1)
         {
             convertDirection = new Vector3(direction.x, 0, direction.z);
-            convertForce = convertDirection * forceMagnitudeVerticle ;
+            convertForce = convertDirection * forceMagnitudeVerticle;
         }
         else if(playerType== PlayerType.Player2)
         {
