@@ -24,6 +24,9 @@ public class Player
     private Vector3 acc;
     private GameObject parent;
 
+    public float constDeltaTime = 0.2f;
+
+    public float curDeltaTime =0f;
     public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
     {
         playerType = type;
@@ -62,11 +65,11 @@ public class Player
             float x = Mathf.Cos(radians);
             float z = Mathf.Sin(radians);
             // 将计算得到的位置应用到对象的位置
-            gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
+            //gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
         }
         else if(playerType == PlayerType.Player2)
         {
-            gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
+            //gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
         }
 
         if(playerInput==null)
@@ -75,8 +78,8 @@ public class Player
         }
         if(InputIsLegal(inputRotation.x-playerInput.beforeRotationVec.x)||InputIsLegal(inputRotation.y-playerInput.beforeRotationVec.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotationVec.z))
         {
-            Debug.LogError("player test inputRotation "+inputRotation+ " beforeRotation" + playerInput.beforeRotationVec);
-            playerInput.AddForceToBall(gameObject.transform.rotation, inputRotation,playerType, id);
+            var direct =  playerInput.AddForceToBall(gameObject.transform.rotation, inputRotation,playerType, id);
+            gameObject.transform.position = parent.transform.position - direct * 2;
         }
     }
     

@@ -23,11 +23,11 @@ public class PlayerInput : MonoBehaviour
         // 获取物体的 Rigidbody 组件
         rb = player.GetComponent<Rigidbody>(); 
     }
-    public void AddForceToBall(Quaternion inputRotation,Vector3 intputRotationVec,PlayerType playerType,int id)
+    public Vector3 AddForceToBall(Quaternion inputRotation,Vector3 intputRotationVec,PlayerType playerType,int id)
     {  
         if(rb == null)
         {
-            return;
+            return Vector3.zero;
         }
         Quaternion rotation = inputRotation;
         
@@ -38,18 +38,21 @@ public class PlayerInput : MonoBehaviour
         sec = beforeRotationQuat * Vector3.right;
 
         var direction = first + sec;
-        var converDirection = Vector3.zero;
-        if(playerType == PlayerType.Player2)
+        var convertDirection = Vector3.zero;
+        var convertForce = Vector3.zero;
+        if(playerType == PlayerType.Player1)
         {
-            converDirection = new Vector3(direction.x,0,direction.z) * forceMagnitudeVerticle; 
-        } 
-        else if(playerType== PlayerType.Player1)
-        {
-            converDirection = new Vector3(0,direction.y,0) * forceMagnitudeHorizontal; 
+            convertDirection = new Vector3(direction.x,0,direction.z);
+            convertForce = convertDirection * forceMagnitudeVerticle; 
         }
-        Debug.LogError("施加力的方向" + converDirection);
+        else if(playerType== PlayerType.Player2)
+        {
+            convertDirection = new Vector3(0,direction.y,0);
+            convertForce = convertDirection * forceMagnitudeHorizontal; 
+        }
+        Debug.LogError("施加力的方向" + convertDirection);
         // 使用刚体施加力
-        rb.AddForce(converDirection, ForceMode.Impulse);
+        rb.AddForce(convertForce, ForceMode.Impulse);
         // 测试当前方向的力
         // var test = inputRotation * Vector3.forward ;
         // rb.AddForce( test * forceMagnitude, ForceMode.Impulse);
@@ -58,6 +61,7 @@ public class PlayerInput : MonoBehaviour
         
         beforeRotationQuat = inputRotation;
         beforeRotationVec = intputRotationVec;
+        return convertDirection;
     }
     void Update()
     {
