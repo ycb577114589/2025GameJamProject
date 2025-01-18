@@ -455,15 +455,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalRotation.w
@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 877587787}
   m_Layer: 0
   m_Name: Gate
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab:
-  - {fileID: 1907482717}
+  - {fileID: 9069674184422626448, guid: 8a25131d1544c47d3aefc49985694797, type: 3}
   - {fileID: 2330820998105746198, guid: 6826322a94eff462ebcb5a6b98c5c1dc, type: 3}
 --- !u!114 &1142770996
 MonoBehaviour:
@@ -1312,7 +1312,7 @@ Transform:
   m_GameObject: {fileID: 1652577393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.34, y: 6.38, z: 3.3}
+  m_LocalPosition: {x: 6.6, y: 6.6, z: 14.3}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee43438f037f437db93918aa249f199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragCoefficientVertical: 1
+  dragCoefficientVertical: 2
   dragCoefficientHor: 0.1
   player: {fileID: 1652577393}
 --- !u!114 &1652577400
@@ -1376,6 +1376,7 @@ MonoBehaviour:
   endPos: {fileID: 877587790}
   NextScene: 
   isDebug: 1
+  audiencePos: []
   health: 0
   yuzhi: 10
 --- !u!1 &1907482717
@@ -1412,11 +1413,10 @@ MonoBehaviour:
   sec: {x: 0, y: 0, z: 0}
   player: {fileID: 1652577393}
   testObj: {fileID: 1907482722}
-  forceMagnitudeVerticle: 4
-  forceMagnitudeHorizontal: 4
+  forceMagnitudeVerticle: 3
+  forceMagnitudeHorizontal: 2
   testobj: {fileID: 0}
   beforeRotationQuat: {x: 0, y: 0, z: 0, w: 0}
-  beforeRotationVec: {x: 0, y: 0, z: 0}
 --- !u!33 &1907482721
 MeshFilter:
   m_ObjectHideFlags: 0
