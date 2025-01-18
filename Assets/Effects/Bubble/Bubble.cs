@@ -23,7 +23,7 @@ public class Bubble : MonoBehaviour
             Reset();
         }
     }
-    void Reset()
+    public void Reset()
     {
         if (meshRenderer)
         {
