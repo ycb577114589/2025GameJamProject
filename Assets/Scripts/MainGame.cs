@@ -28,6 +28,8 @@ public class MainGame : MonoBehaviour
 
     public int health;
     public static MainGame instance = null;
+
+    public float yuzhi = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {

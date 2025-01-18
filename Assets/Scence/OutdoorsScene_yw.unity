@@ -1095,7 +1095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee43438f037f437db93918aa249f199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragCoefficient: 3
+  dragCoefficientVertical: 0.1
+  dragCoefficientHor: 0.1
   player: {fileID: 1652577393}
 --- !u!114 &1652577400
 MonoBehaviour:
@@ -1392,8 +1393,8 @@ MonoBehaviour:
   sec: {x: 0, y: 0, z: 0}
   player: {fileID: 1652577393}
   testObj: {fileID: 1907482722}
-  forceMagnitudeVerticle: 8
-  forceMagnitudeHorizontal: 4
+  forceMagnitudeVerticle: 20
+  forceMagnitudeHorizontal: 15
   testobj: {fileID: 0}
   beforeRotationQuat: {x: 0, y: 0, z: 0, w: 0}
   beforeRotationVec: {x: 0, y: 0, z: 0}

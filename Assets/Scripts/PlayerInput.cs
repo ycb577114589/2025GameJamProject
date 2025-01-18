@@ -62,13 +62,11 @@ public class PlayerInput : MonoBehaviour
         if(playerType == PlayerType.Player1)
         {
             convertDirection = new Vector3(direction.x, 0, direction.z);
-            float diff = Vector3.Dot(direction, convertDirection);
-            convertForce = convertDirection * forceMagnitudeVerticle * diff;
+            convertForce = convertDirection * forceMagnitudeVerticle ;
         }
         else if(playerType== PlayerType.Player2)
         {
-            float diff = Vector3.Dot(direction, Vector3.up);
-            convertDirection = new Vector3(0, diff, 0);
+            convertDirection = new Vector3(0, direction.y, 0);
             if(direction.y < 0)
                 convertDirection.y = 0;
             convertForce = convertDirection * forceMagnitudeHorizontal;
@@ -81,9 +79,7 @@ public class PlayerInput : MonoBehaviour
         // rb.AddForce( test * forceMagnitude, ForceMode.Impulse);
         // Debug.LogError("当前拍的志向"+test+"  id = " +id);
         // testobj.transform.position = this.transform.position + direction *100;
-
-        beforeRotationQuat = inputRotation;
-        beforeRotationVec = intputRotationVec;
+         
         return convertDirection;
     }
 }

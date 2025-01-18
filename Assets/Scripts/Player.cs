@@ -29,6 +29,7 @@ public class Player
     public float constDeltaTime = 0.2f;
 
     public float curDeltaTime = 0f;
+ 
     // public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
     // {
     //     playerType = type;
@@ -59,14 +60,15 @@ public class Player
     }
     private bool InputIsLegal(float inputValue)
     {
-        return Mathf.Abs(inputValue) > 1f;
+        return Mathf.Abs(inputValue) > MainGame.instance.yuzhi;
     }
-
+    
     public void Update()
     {
         gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
         //var direct = playerInput.CalForceToBall(gameObject.transform.rotation, playerType, id);
         Vector3 pos;
+ 
         if(playerType == PlayerType.Player1)
         {
             Vector3 dir = gameObject.transform.right;
@@ -99,10 +101,25 @@ public class Player
         {
             return;
         }
-        if(InputIsLegal(inputRotation.x - playerInput.beforeRotationVec.x)||InputIsLegal(inputRotation.y - playerInput.beforeRotationVec.y)||InputIsLegal(inputRotation.z-playerInput.beforeRotationVec.z))
+        int isLegalNum = 0;
+        if(InputIsLegal(inputRotation.z-playerInput.beforeRotationVec.z))
+        {
+            isLegalNum ++;
+        }
+        if(InputIsLegal(inputRotation.y - playerInput.beforeRotationVec.y))
+        {
+            isLegalNum++;
+        }
+        if(InputIsLegal(inputRotation.x - playerInput.beforeRotationVec.x))
+        {
+            isLegalNum++;
+        }
+        if(isLegalNum >= 1 )
         {
             playerInput.AddForceToBall(gameObject.transform.rotation, inputRotation, playerType, id);
         }
+        playerInput.beforeRotationQuat = gameObject.transform.rotation;
+        playerInput.beforeRotationVec = inputRotation;
     }
 
     public void AddMessage(NetData data)
