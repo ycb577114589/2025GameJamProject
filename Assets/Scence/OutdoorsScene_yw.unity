@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 877587788}
   - component: {fileID: 877587787}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8077b98f44b416daa85018e9dfb5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  node: {fileID: 978386660}
   netMgr: {fileID: 1142770995}
 --- !u!4 &1142770997
 Transform:
@@ -918,6 +917,8 @@ GameObject:
   - component: {fileID: 1652577395}
   - component: {fileID: 1652577394}
   - component: {fileID: 1652577398}
+  - component: {fileID: 1652577399}
+  - component: {fileID: 1652577400}
   m_Layer: 0
   m_Name: Ball_Main
   m_TagString: Untagged
@@ -1008,8 +1009,8 @@ Transform:
   m_GameObject: {fileID: 1652577393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.25, y: 4.75, z: 1.27}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 2.25, y: 9, z: 52.1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1041,6 +1042,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1652577399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652577393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee43438f037f437db93918aa249f199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragCoefficient: 0.1
+  player: {fileID: 1652577393}
+--- !u!114 &1652577400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652577393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754fc5cd8992337498b708fee20d04b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPos: {fileID: 877587790}
+  NextScene: 
+  TestSpeed: 0.02
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
