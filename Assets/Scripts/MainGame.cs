@@ -140,6 +140,17 @@ public class MainGame : MonoBehaviour
 
     void DeadUpdate()
     {
+        if(isDebug)
+        {
+            transform.position = startPos;
+            transform.rotation = startRot;
+            transform.localScale = startScale; 
+            gameState = GameState.Playing;
+            GetComponent<Rigidbody>().useGravity = true;
+            statusStartTime = Time.time;
+            health = 100;
+            return;
+        }
         int lastTime = 2;
         if(Time.time - statusStartTime > lastTime)
         {
