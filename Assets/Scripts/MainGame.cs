@@ -31,6 +31,7 @@ public class MainGame : MonoBehaviour
     public int health;
     public static MainGame instance = null;
 
+    public Bubble bubble;
     public float yuzhi = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -71,6 +72,10 @@ public class MainGame : MonoBehaviour
             else
                 Debug.Log("游戏结束");
         }
+        else if(other.transform.tag =="Damage")
+        {
+            Kill();
+        }
     } 
     // Update is called once per frame
     void Update()
@@ -100,9 +105,16 @@ public class MainGame : MonoBehaviour
 
     void Kill()
     {
-        gameState = GameState.Deaed;
-        GetComponent<Rigidbody>().useGravity = false;
-        statusStartTime = Time.time;
+        if(gameState !=  GameState.Deaed)
+        {
+            Debug.Log("be killed"); 
+            MainGame.instance.bubble.Boom();
+            gameState = GameState.Deaed;
+            
+            GetComponent<Rigidbody>().useGravity = false;
+            
+            statusStartTime = Time.time;
+        }
     }
 
     void PlayerUpdate()
@@ -114,7 +126,8 @@ public class MainGame : MonoBehaviour
         if(transform.position.y < bottomY)
         {
             Kill();
-        }else if(transform.position.y > topY)
+        }
+        else if(transform.position.y > topY)
         {
             Kill();
         }
@@ -122,7 +135,7 @@ public class MainGame : MonoBehaviour
 
     void EndUpdate()
     {
-        ;
+        
     }
 
     void DeadUpdate()
@@ -136,12 +149,13 @@ public class MainGame : MonoBehaviour
             health = 100;
             transform.position = startPos;
             transform.rotation = startRot;
-            transform.localScale = startScale;
+            transform.localScale = startScale; 
         }
     }
 
     void StartUpdate()
     {
+        MainGame.instance.bubble.Reset();
         int lastTime = 1;
         if(Time.time - statusStartTime > lastTime)
         {
@@ -150,5 +164,15 @@ public class MainGame : MonoBehaviour
             statusStartTime = Time.time;
         }
         transform.transform.localScale = Vector3.one * (1 + (health - 100.0f) / 100);
+    }
+
+    void HurtDamage(int hurtHp)
+    {
+        health = health -hurtHp;
+        if(health <= 0)
+        {
+            Kill();
+        }
+        transform.localScale = Vector3.one * (1 + (health - 100.0f) / 100);
     }
 }
