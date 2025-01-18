@@ -6,6 +6,8 @@ public class PlayerInput : MonoBehaviour
     public Vector3 sec = Vector3.zero;
     
     public GameObject player;
+
+    public Bubble playerBubble;
     private Rigidbody rb;
     
     public Transform testObj;
@@ -21,6 +23,7 @@ public class PlayerInput : MonoBehaviour
         player = GameObject.Find("Ball_Main");
         // 获取物体的 Rigidbody 组件
         rb = player.GetComponent<Rigidbody>(); 
+        playerBubble= MainGame.instance.bubble; 
     }
 
     public Vector3 CalForceToBall(Quaternion inputRotation, PlayerType playerType, int id)
@@ -64,6 +67,8 @@ public class PlayerInput : MonoBehaviour
         {
             convertDirection = new Vector3(direction.x, 0, direction.z);
             convertForce = convertDirection * forceMagnitudeVerticle;
+
+            playerBubble.PlaySound(1);
         }
         else if(playerType== PlayerType.Player2)
         {
@@ -71,6 +76,7 @@ public class PlayerInput : MonoBehaviour
             if(direction.y < 0)
                 convertDirection.y = -convertDirection.y;
             convertForce = convertDirection * forceMagnitudeHorizontal;
+            playerBubble.PlaySound(2);
         }
         //  Debug.Log("force: " + convertForce);
         // 使用刚体施加力
