@@ -455,15 +455,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1092729956952514086, guid: 4b4256ddbed1c4177a1f84814ebb5409, type: 3}
       propertyPath: m_LocalRotation.w
@@ -653,7 +653,7 @@ Transform:
   m_GameObject: {fileID: 877587786}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.35780817, z: -0, w: 0.9337951}
-  m_LocalPosition: {x: 8.27, y: 3.3, z: 12.63}
+  m_LocalPosition: {x: 2.45, y: 2, z: 20.1}
   m_LocalScale: {x: 2.0112, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee43438f037f437db93918aa249f199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragCoefficientVertical: 1
+  dragCoefficientVertical: 0.1
   dragCoefficientHor: 0.1
   player: {fileID: 1652577393}
 --- !u!114 &1652577400
@@ -1394,8 +1394,8 @@ MonoBehaviour:
   sec: {x: 0, y: 0, z: 0}
   player: {fileID: 1652577393}
   testObj: {fileID: 1907482722}
-  forceMagnitudeVerticle: 4
-  forceMagnitudeHorizontal: 4
+  forceMagnitudeVerticle: 20
+  forceMagnitudeHorizontal: 15
   testobj: {fileID: 0}
   beforeRotationQuat: {x: 0, y: 0, z: 0, w: 0}
   beforeRotationVec: {x: 0, y: 0, z: 0}

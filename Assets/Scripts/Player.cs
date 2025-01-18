@@ -52,9 +52,9 @@ public class Player
         var diff = Mathf.Abs(inputValue);
         while(diff > 180)
             diff = 360 - diff;
-        return Mathf.Abs(diff) > 1f;
+        return Mathf.Abs(diff) > MainGame.instance.yuzhi;
     }
-
+    
     public void Update()
     {
         if(playerType == PlayerType.Other)
@@ -70,6 +70,7 @@ public class Player
         gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, quant, 20 * Time.deltaTime);
         //var direct = playerInput.CalForceToBall(gameObject.transform.rotation, playerType, id);
         Vector3 pos;
+ 
         if(playerType == PlayerType.Player1)
         {
             Vector3 dir = gameObject.transform.right;
@@ -102,8 +103,8 @@ public class Player
         {
             return;
         }
-        float angle = Quaternion.Angle(quant, playerInput.beforeRotationQuat);
-        if(angle > 5)
+        float angle = Quaternion.Angle(playerInput.beforeRotationQuat, quant);
+        if(angle > 8)
         {
             playerInput.AddForceToBall(gameObject.transform.rotation, playerType, id);
         }
