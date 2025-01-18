@@ -53,6 +53,7 @@ public class Player
         }
         gameObject.name = "Player" + id;
 
+        playerType = type;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
         this.parent = parent;
         playerInput = gameObject.GetComponent<PlayerInput>();
