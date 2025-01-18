@@ -22,23 +22,16 @@ public class Player
 
     private Vector3 inputRotation;
     private Vector3 acc;
+    private GameObject parent;
 
     public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
     {
         playerType = type;
         gameObject = GameObject.Instantiate(prefab, pos,Quaternion.identity);
         gameObject.name = "Player" + id;
-        if(type == PlayerType.Player1 || type == PlayerType.Player2)
-        {
-            gameObject.transform.SetParent(parent.transform);
-            gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-            if(type == PlayerType.Player2)
-            {
-                gameObject.transform.localPosition = new Vector3(0, -1f, 0);
-            }
-        }else{
-            gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-        }
+
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        this.parent = parent;
         playerInput = gameObject.GetComponent<PlayerInput>();
     }
     private bool InputIsLegal(float inputValue)
@@ -56,7 +49,10 @@ public class Player
             float x = Mathf.Cos(radians);
             float z = Mathf.Sin(radians);
             // 将计算得到的位置应用到对象的位置
-            gameObject.transform.localPosition = new Vector3(x, 0, z);
+            gameObject.transform.position = new Vector3(x, 0, z) * 5 + parent.transform.position;
+        }else if(playerType == PlayerType.Player2)
+        {
+            gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
         }
 
         if(playerInput==null)
