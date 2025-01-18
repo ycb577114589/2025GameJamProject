@@ -44,8 +44,8 @@ public class PlayerInput : MonoBehaviour
         // var test = inputRotation * Vector3.forward ;
         // rb.AddForce( test * forceMagnitude, ForceMode.Impulse);
         // Debug.LogError("当前拍的志向"+test+"  id = " +id);
-        testobj.transform.position = this.transform.position + direction *100;
-
+        // testobj.transform.position = this.transform.position + direction *100;
+        
         beforeRotation = inputRotation;
     }
     void Update()

@@ -54,7 +54,7 @@ public class Player
         {
             gameObject.transform.position = parent.transform.position + new Vector3(0, -5f, 0);
         }
-
+        
         if(playerInput==null)
         {
             return;
