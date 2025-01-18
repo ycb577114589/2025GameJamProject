@@ -3,7 +3,6 @@ using WebSocketSharp;
 
 public class WebSocketClientExample : MonoBehaviour
 {
-    public GameObject node;
     private WebSocket ws;
     public NetMgr netMgr;
     void Start()
@@ -24,9 +23,6 @@ public class WebSocketClientExample : MonoBehaviour
             ws.OnOpen += (sender, e) =>
             {
                 Debug.Log("Connected to the server");
-                // 发送消息给服务端
-                ws.Send("Hello, Server!");
-                node.SetActive(false);
             };
 
             // 注册连接关闭事件
@@ -56,6 +52,7 @@ public class WebSocketClientExample : MonoBehaviour
         {
             // 关闭连接
             ws.Close();
+            ws = null;
         }
     }
 }
