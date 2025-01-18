@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,37 +13,35 @@ public class NetData
     public float ay;
     public float az;
     public int id;
+    public int type;
 }
 
 public class NetMgr : MonoBehaviour
 {
-    // 玩家id -》 当前第几个包
-    public Dictionary<int,int> dicPlayerIdToFrameCount= new Dictionary<int, int>();
-
-    public List<NetData> listPlayerFrameMessage = new List<NetData>();
-
-    public Transform testRotation;
-
-    public Vector3 nextRotation= Vector3.zero;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    { 
-    }
+    public List<GameObject> playerPrefab;
+    private Dictionary<int, Player> dictPlayer = new Dictionary<int, Player>();
 
     void Update()
     {
         // 运行时设置物体的旋转为 90 度绕 Y 轴
-        testRotation.rotation = Quaternion.Euler(nextRotation);
+        foreach(int i in dictPlayer.Keys)
+        {
+            if(!dictPlayer[i].gameObject)
+            {
+                dictPlayer[i].CreateObject(playerPrefab[0], new Vector3(0, 0, 200 * dictPlayer[i].id));
+            }
+            dictPlayer[i].Update();
+        }
     }
+
     public void AddMessage(string message)
     {
-        
-        // 假设 message.data 是一个 JSON 字符串
-        string jsonData = message;
-
-        // 使用 JsonUtility 解析 JSON 数据
-        NetData data = JsonUtility.FromJson<NetData>(jsonData);
-        Debug.Log(data.rx+ "  "+ data.ry+ "  "+data.rz);
-        nextRotation = new Vector3(-data.rz,-data.rx,data.ry);
+        Debug.Log("Receive: " + message);
+        NetData data = JsonUtility.FromJson<NetData>(message);
+        if(!dictPlayer.ContainsKey(data.id))
+        {
+            dictPlayer.Add(data.id, new Player{id = data.id, gameObject = null});
+        }
+        dictPlayer[data.id].AddMessage(data);
     }
 }
