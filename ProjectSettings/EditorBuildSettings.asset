@@ -6,17 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scence/OutdoorsScene.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
-  - enabled: 1
     path: Assets/Scence/OutdoorsScene_level1.unity
     guid: 99bc35481848c43759870d1ae96923a6
   - enabled: 1
     path: Assets/Scence/OutdoorsScene_level2.unity
-    guid: 4ccc8f287f9c949088fe8c1d557f6631
+    guid: c5648c442b92c4c6da45a24d68184bdd
   - enabled: 1
     path: Assets/Scence/OutdoorsScene_level3.unity
-    guid: 017ee825ff76b41ddb93b62745149729
+    guid: f90276c639d69482ca8809d0f9017242
+  - enabled: 1
+    path: Assets/Scence/OutdoorsScene_level4.unity
+    guid: 25729f4eff9e34bf884445ba690b1744
+  - enabled: 1
+    path: Assets/Scence/OutdoorsScene_level5.unity
+    guid: 19e4500d7bcc1493983e47bfb2176d1b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0

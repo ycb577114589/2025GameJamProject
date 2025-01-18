@@ -1374,8 +1374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPos: {fileID: 877587790}
-  NextScene: 
-  isDebug: 1
+  NextScene: OutdoorsScene_level2
+  isDebug: 0
   audiencePos: []
   health: 0
   bubble: {fileID: 2012204694}
@@ -1413,6 +1413,7 @@ MonoBehaviour:
   first: {x: 0, y: 0, z: 0}
   sec: {x: 0, y: 0, z: 0}
   player: {fileID: 1652577393}
+  playerBubble: {fileID: 0}
   testObj: {fileID: 1907482722}
   forceMagnitudeVerticle: 4
   forceMagnitudeHorizontal: 4
