@@ -188,8 +188,8 @@ Material:
     - _HeightTessCenter: 0.5
     - _InvTilingScale: 1
     - _Ior: 1
-    - _IridescenceMask: 0
-    - _IridescenceThickness: 0
+    - _IridescenceMask: 0.27
+    - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
     - _MaterialID: 3
     - _MaterialTypeMask: 2
