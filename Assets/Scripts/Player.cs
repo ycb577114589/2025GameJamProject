@@ -104,7 +104,7 @@ public class Player
             return;
         }
         float angle = Quaternion.Angle(playerInput.beforeRotationQuat, quant);
-        if(angle > 8)
+        if(angle > MainGame.instance.yuzhi)
         {
             playerInput.AddForceToBall(gameObject.transform.rotation, playerType, id);
         }

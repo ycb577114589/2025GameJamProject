@@ -16,7 +16,6 @@ public class PlayerInput : MonoBehaviour
     public GameObject testobj ;
     public Quaternion beforeRotationQuat ;
 
-
     void Start()
     {
         player = GameObject.Find("Ball_Main");

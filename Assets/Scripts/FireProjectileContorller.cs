@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FireProjectileContorller : MonoBehaviour
@@ -23,11 +24,23 @@ public class FireProjectileContorller : MonoBehaviour
     {
         // 实例化投掷物预制体
         GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        if (rb != null)
+        if(projectile)
         {
-            // 给投掷物添加一个向前的力
-            rb.linearVelocity = transform.forward * projectileSpeed;
+            StartCoroutine(DestroyAfterSeconds(projectile, 8.0f));
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                // 给投掷物添加一个向前的力
+                rb.linearVelocity = transform.forward * projectileSpeed;
+            }
         }
+    }
+
+    IEnumerator DestroyAfterSeconds(GameObject obj, float delay)
+    {
+        // 等待指定的时间
+        yield return new WaitForSeconds(delay);
+        // 销毁当前游戏对象
+        Destroy(obj);
     }
 }
