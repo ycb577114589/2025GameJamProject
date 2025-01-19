@@ -9,6 +9,11 @@ public class DistanceForce : MonoBehaviour
     void Update()
     {
         targetObject = MainGame.instance.gameObject;
+
+        if(MainGame.instance.GetStatus() != GameState.Playing)
+        {
+            return;
+        }
         // 计算两个对象之间的距离
         float distance = Vector3.Distance(transform.position, targetObject.transform.position);
         if (distance < meter)
