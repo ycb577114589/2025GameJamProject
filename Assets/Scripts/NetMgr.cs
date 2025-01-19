@@ -87,7 +87,7 @@ public class NetMgr : MonoBehaviour
                     playerType = PlayerType.Player2;
                     Player2Id = i;
                     SendCharacterType(i, 2);
-                    prefab = playerPrefab[0];
+                    prefab = playerPrefab[2];
                     spawnPos = followObj.transform.position;
                 }
                 else if(audienceIdx < MainGame.instance.audiencePos.Count){
