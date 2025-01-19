@@ -170,6 +170,10 @@ public class MainGame : MonoBehaviour
 
     void StartUpdate()
     {
+        if(bubble == null)
+        {
+            bubble = this.transform.Find("Bubble").GetComponent<Bubble>();
+        }
         MainGame.instance.bubble.Reset();
         int lastTime = 5;
         if(Time.time - statusStartTime > lastTime)

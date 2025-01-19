@@ -40,7 +40,9 @@ public class NetMgr : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             DontDesObj = gameObject;
-        }else{
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
@@ -94,10 +96,10 @@ public class NetMgr : MonoBehaviour
                 }else{
                     continue;
                 }
-                prefab = playerPrefab[1];
-                playerType = PlayerType.Other;
+                // prefab = playerPrefab[1];
+                // playerType = PlayerType.Other;
 
-                spawnPos = MainGame.instance.endPos.position;
+                // spawnPos = MainGame.instance.endPos.position;
                 dictPlayer[i].CreateObject(prefab, spawnPos, playerType, followObj);
             }
             dictPlayer[i].Update();
