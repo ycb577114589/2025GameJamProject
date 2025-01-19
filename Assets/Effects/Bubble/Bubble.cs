@@ -8,6 +8,7 @@ public class Bubble : MonoBehaviour
     public AudioClip sound1;  // 第一个音效
     public AudioClip sound2;  // 第二个音效
     public AudioClip soundBroken;  // 第二个音效
+    public AudioClip soundSuccess;  // 第二个音效
     private AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,10 +56,16 @@ public class Bubble : MonoBehaviour
         {
             audioSource.clip = soundBroken;  // 设置为第二个音效
         }
+        else if(soundNumber == 4 )
+        {
+
+            audioSource.clip = soundSuccess;  // 设置为第二个音效
+        }
 
 
         audioSource.Play();  // 播放当前音效
-    }    public void Reset()
+    }    
+    public void Reset()
     {
         if (meshRenderer)
         {

@@ -74,6 +74,7 @@ public class MainGame : MonoBehaviour
     {
         if(other.transform.tag=="Finish")    
         {
+            bubble.PlaySound(4);
             if(NextScene.Length != 0)
                 SceneManager.LoadScene(NextScene);
             else

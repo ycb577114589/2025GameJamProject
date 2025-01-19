@@ -4961,6 +4961,7 @@ MonoBehaviour:
   sound1: {fileID: 8300000, guid: f0870182ca00b4543ac3430f6265e971, type: 3}
   sound2: {fileID: 8300000, guid: 3659342cc7b8845ebb37ffc4a5ee8fd2, type: 3}
   soundBroken: {fileID: 8300000, guid: 56bf9f37e54c94d599a4980706d5dc8b, type: 3}
+  soundSuccess: {fileID: 8300000, guid: 23ce8d6326d954b2cb327058fe677078, type: 3}
 --- !u!82 &4154190376010965411
 AudioSource:
   m_ObjectHideFlags: 0
