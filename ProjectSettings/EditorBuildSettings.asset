@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scence/OutdoorsScene_level2.unity
     guid: c5648c442b92c4c6da45a24d68184bdd
   - enabled: 1
-    path: Assets/Scence/OutdoorsScene_level3.unity
+    path: Assets/Scence/OutdoorsScene_level33.unity
     guid: f90276c639d69482ca8809d0f9017242
+  - enabled: 1
+    path: Assets/Scence/OutdoorsScene_level3.unity
+    guid: a24a41930b275494288abeb0ae0ba2dc
   - enabled: 1
     path: Assets/Scence/OutdoorsScene_level4.unity
     guid: 25729f4eff9e34bf884445ba690b1744
