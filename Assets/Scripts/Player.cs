@@ -89,12 +89,13 @@ public class Player
         {
             if(playerType == PlayerType.Player1)
             {
-                float degree = Quaternion.Angle(lastQuen, quant);
-                if(degree > 8)
-                {
-                    lastQuen = quant;
-                    MainGame.instance.health += (int)(degree / 4.0f);
-                }
+                MainGame.instance.health += 1;
+                // float degree = Quaternion.Angle(lastQuen, quant);
+                // if(degree > 8)
+                // {
+                //     lastQuen = quant;
+                //     MainGame.instance.health += (int)(degree / 4.0f);
+                // }
             }
             return;
         }

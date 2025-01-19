@@ -175,7 +175,7 @@ public class MainGame : MonoBehaviour
             bubble = this.transform.Find("Bubble").GetComponent<Bubble>();
         }
         MainGame.instance.bubble.Reset();
-        int lastTime = 5;
+        int lastTime = 2;
         if(Time.time - statusStartTime > lastTime)
         {
             gameState = GameState.Playing;
