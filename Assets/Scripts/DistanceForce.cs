@@ -19,7 +19,8 @@ public class DistanceForce : MonoBehaviour
             // 计算力的方向，从当前对象指向目标对象
             Vector3 forceDirection = (targetObject.transform.position - transform.position).normalized;
             // 施加力
-            targetObject.GetComponent<Rigidbody>().AddForce(-forceDirection * forceMagnitude);
+            var tmp = new Vector3(forceDirection.x,0,forceDirection.z);
+            targetObject.GetComponent<Rigidbody>().AddForce(-tmp * forceMagnitude);
         }
     }
 }
