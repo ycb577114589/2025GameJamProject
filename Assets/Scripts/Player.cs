@@ -31,6 +31,7 @@ public class Player
     public float curDeltaTime = 0f;
 
     private Quaternion lastQuen = Quaternion.identity;
+    private bool IsDestroy;
 
     public void CreateObject(GameObject prefab, Vector3 pos, PlayerType type, GameObject parent)
     {
@@ -87,16 +88,16 @@ public class Player
 
         if(MainGame.instance.GetStatus() == GameState.Start)
         {
-            if(playerType == PlayerType.Player1)
-            {
-                MainGame.instance.health += 1;
-                // float degree = Quaternion.Angle(lastQuen, quant);
-                // if(degree > 8)
-                // {
-                //     lastQuen = quant;
-                //     MainGame.instance.health += (int)(degree / 4.0f);
-                // }
-            }
+            // if(playerType == PlayerType.Player1)
+            // {
+            //     MainGame.instance.health += 1;
+            //     float degree = Quaternion.Angle(lastQuen, quant);
+            //     if(degree > 8)
+            //     {
+            //         lastQuen = quant;
+            //         MainGame.instance.health += (int)(degree / 4.0f);
+            //     }
+            // }
             return;
         }
         if(MainGame.instance.GetStatus() != GameState.Playing)

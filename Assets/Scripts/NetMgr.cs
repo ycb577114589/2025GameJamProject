@@ -49,6 +49,7 @@ public class NetMgr : MonoBehaviour
 
     public static NetMgr GetNetMgr()
     {
+        if(!DontDesObj) return null;
         return DontDesObj.GetComponent<NetMgr>();
     }
 
@@ -96,10 +97,6 @@ public class NetMgr : MonoBehaviour
                 }else{
                     continue;
                 }
-                // prefab = playerPrefab[1];
-                // playerType = PlayerType.Other;
-
-                // spawnPos = MainGame.instance.endPos.position;
                 dictPlayer[i].CreateObject(prefab, spawnPos, playerType, followObj);
             }
             dictPlayer[i].Update();
@@ -127,3 +124,4 @@ public class NetMgr : MonoBehaviour
         dictPlayer[data.id].AddMessage(data);
     }
 }
+ 

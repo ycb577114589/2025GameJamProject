@@ -10,12 +10,6 @@ public class Bullet : MonoBehaviour
         bubble = GetComponent<Bubble>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ColliderWithBall(MainGame mainGame)
     {
         if (mainGame != null)

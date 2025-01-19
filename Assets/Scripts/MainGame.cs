@@ -47,6 +47,12 @@ public class MainGame : MonoBehaviour
         }else{
             gameState = GameState.Start;
             GetComponent<Rigidbody>().useGravity = false;
+
+            var readyBall = GetComponent<ReadyBall>();
+            if(readyBall != null)
+            {
+                readyBall.Push();
+            }
         }
         statusStartTime = Time.time;
 
@@ -55,7 +61,8 @@ public class MainGame : MonoBehaviour
         startScale = transform.localScale;
 
         netMgr = NetMgr.GetNetMgr();
-        netMgr.SetFollowObj(gameObject);
+        if(netMgr)
+            netMgr.SetFollowObj(gameObject);
         health = 100;
     }
 
@@ -112,7 +119,8 @@ public class MainGame : MonoBehaviour
         if(gameState !=  GameState.Deaed)
         {
             Debug.Log("be killed"); 
-            MainGame.instance.bubble.Boom();
+            if(bubble)
+                bubble.Boom();
             gameState = GameState.Deaed;
             
             GetComponent<Rigidbody>().useGravity = false;
@@ -165,8 +173,16 @@ public class MainGame : MonoBehaviour
             transform.position = startPos;
             transform.rotation = startRot;
             transform.localScale = startScale; 
+            
+            var readyBall = GetComponent<ReadyBall>();
+            if(readyBall != null)
+            {
+                readyBall.Push();
+            }
         }
     }
+
+    private float lastT = 0;
 
     void StartUpdate()
     {
@@ -174,13 +190,18 @@ public class MainGame : MonoBehaviour
         {
             bubble = this.transform.Find("Bubble").GetComponent<Bubble>();
         }
-        MainGame.instance.bubble.Reset();
+        bubble.Reset();
         int lastTime = 2;
         if(Time.time - statusStartTime > lastTime)
         {
             gameState = GameState.Playing;
             GetComponent<Rigidbody>().useGravity = true;
             statusStartTime = Time.time;
+        }
+        if(Time.time - lastT > 0.05)
+        {
+            lastT = Time.time;
+            health += 1;
         }
         transform.transform.localScale = Vector3.one * (1 + (health - 100.0f) / 100);
     }
