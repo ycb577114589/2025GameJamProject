@@ -97,6 +97,10 @@ public class NetMgr : MonoBehaviour
                 }else{
                     continue;
                 }
+                // prefab = playerPrefab[1];
+                // playerType = PlayerType.Other;
+
+                // spawnPos = MainGame.instance.endPos.position;
                 dictPlayer[i].CreateObject(prefab, spawnPos, playerType, followObj);
             }
             dictPlayer[i].Update();

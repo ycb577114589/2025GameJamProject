@@ -39,6 +39,7 @@ public class Player
         if(type == PlayerType.Other)
         {
             gameObject.GetComponent<FireProjectileContorller>().target = MainGame.instance.gameObject.transform;
+             
         }
         gameObject.name = "Player" + id;
         playerType = type;
@@ -47,6 +48,17 @@ public class Player
         this.parent = parent;
         playerInput = gameObject.GetComponent<PlayerInput>();
         lastQuen = quant;
+        if(type == PlayerType.Other)
+        {
+            if(MainGame.instance.audiencePos.Count > 0 )
+            {
+                gameObject.transform.position = MainGame.instance.audiencePos[MainGame.instance.curPos].position;
+                if(MainGame.instance.curPos + 1 < MainGame.instance.audiencePos.Count )
+                {
+                    MainGame.instance.curPos ++;
+                }
+            }
+        }
     }
     private bool InputIsLegal(float inputValue)
     {

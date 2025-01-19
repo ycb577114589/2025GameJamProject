@@ -23,7 +23,7 @@ public class MainGame : MonoBehaviour
     [Tooltip("是否调试模式")]
     public bool isDebug = false;
     public List<Transform> audiencePos;
-
+    public int curPos = 0;
     private GameState gameState = GameState.Start;
     private float statusStartTime = 0;
     private NetMgr netMgr;
