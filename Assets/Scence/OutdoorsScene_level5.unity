@@ -910,6 +910,7 @@ MonoBehaviour:
   audiencePos:
   - {fileID: 417667717}
   - {fileID: 665363292}
+  curPos: 0
   health: 0
   bubble: {fileID: 0}
   yuzhi: 10
@@ -2408,13 +2409,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042316612}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.5, z: -0, w: 0.8660254}
+  m_LocalRotation: {x: -0, y: -0.6496334, z: -0, w: 0.76024765}
   m_LocalPosition: {x: -2.8672523, y: 1.9114561, z: -21.346228}
-  m_LocalScale: {x: 2.5621328, y: 2.7289464, z: 2.778225}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -81.028, z: 0}
 --- !u!1001 &4202245688164812262
 PrefabInstance:
   m_ObjectHideFlags: 0
